@@ -15,10 +15,10 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		
 		
-		try {
+		
 			System.out.println("Enter account data");
 			System.out.print("Number: ");
-			int number = sc.nextInt();
+			int number = sc.nextInt();// tem que ter o nextline abaixo
 			System.out.print("Holder: ");
 			sc.nextLine();
 			String holder = sc.nextLine();
@@ -34,15 +34,15 @@ public class Program {
 			
 			double withdraw = sc.nextDouble();	
 			
+		try {
 
-			acc.withdraw(withdraw);		
-			
+			acc.withdraw(withdraw);					
 			System.out.printf("New balance: %.2f%n", acc.getBalance());
 			
 		
 		}
 		catch (DomainException e) {
-			System.out.println("Error in withdraw: " + e.getMessage() );
+			System.out.println("Error in withdraw: " + e.getMessage());//getMessage pega a mensagem criada na classe Account
 		}
 		
 		

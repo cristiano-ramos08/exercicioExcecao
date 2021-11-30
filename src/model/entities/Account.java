@@ -8,8 +8,7 @@ public class Account {
 	private Double balance;
 	private Double withdrawLimit;
 	
-	public Account(Integer number, String holder, Double balance, Double withdrawLimit) {
-		
+	public Account(Integer number, String holder, Double balance, Double withdrawLimit) {		
 		this.number = number;
 		this.holder = holder;
 		this.balance = balance;
@@ -51,19 +50,24 @@ public class Account {
 	public void Deposit(double amount) {
 		balance += amount;
 	}
-	public void withdraw (double amount) throws DomainException {
-		
-		if (amount > balance && amount < withdrawLimit) {
-			throw new DomainException("Not enough balance");
-		}
-		if (amount > withdrawLimit){
-			throw new DomainException("The amount exceeds withdraw limit");
-		}
-		
+	
+	public void withdraw(double amount) {
+		validateWithdraw(amount);
 		balance -= amount;
 		
 		
+	}
+	
+	
+	private void validateWithdraw(double amount){
+		if (amount > getWithdrawLimit()){
+			throw new DomainException("Erro de saque: a quantia excede o limite de saque.");
+		}	
 		
+		if (amount > getBalance()) {
+			throw new DomainException("Erro de saque: saldo Insuficiente");
+		}
+				
 	}
 
 }
